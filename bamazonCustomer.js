@@ -1,4 +1,5 @@
 var mysql = require("mysql2");
+var inquirer = require("inquirer");
 
 var connection = mysql.createConnection({ 
     host: "localhost", //127.0.0.1
@@ -18,71 +19,9 @@ connection.connect(function(err)  {
     runSearch();
 });
   
+  
+  
   function runSearch() {
-    inquirer
-      .prompt({
-        name: "action",
-        type: "list",
-        message: "What department id do you prefer?",
-        choices: [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8",
-          "9",
-          "10"
-        ]
-      })
-      .then(function(answer) {
-        switch (answer.action) {
-        case "1":
-          item_id();
-          break;
-  
-        case "2":
-          item_id();
-          break;
-  
-        case "3":
-          item_id();
-          break;
-  
-        case "4":
-          item_id();
-          break;
-  
-        case "5":
-          item_id();
-          break;
-
-        case "6":
-        item_id();
-        break;
-
-        case "7":
-        item_id();
-        break;
-
-        case "8":
-        item_id();
-        break;
-        
-        case "9":
-        item_id();
-        break;
-
-        case "10":
-        item_id();
-
-        }
-      });
-  }
-  
-  function item_id() {
     inquirer
       .prompt({
         name: "product",
