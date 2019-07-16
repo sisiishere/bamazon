@@ -24,4 +24,22 @@ function afterConnection() {
         console.log(res);
         connection.end();
     })
-}
+};
+
+var inquirer = function() {
+    // if the length of the team array is 5 or higher, no more questions will be asked
+      inquirer.prompt([
+        {
+          item_id: "ID #",
+          message: "What is the item's ID?: ",
+          message: "Quantity of the product: ",
+          validate: function(bamazon1_stock) {
+            if (quantity >= bamazon1_stock) {
+              true;
+              console.log("Good to go! Buy 'em!");
+            }
+            else {
+            false;
+            console.log("Insufficiency. Decrease the amount.")
+            }
+          }}])}
