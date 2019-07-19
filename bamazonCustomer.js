@@ -50,18 +50,15 @@ connection.connect(function(err)  {
       })
       .then(function(answer) {
         var query = "SELECT stock, price FROM products WHERE stock";
-        connection.query(query, {stock: answer.stock}, function(err, res) {
-          if (answer.stock < res.stock) {
-            for (var i = 0; i < res.length; i++) {
+        connection.query(query, {stock: answer.quantity}, function(err, res) {
+        console.log(answer.quantity, res[0].stock)
+          if (answer.quantity < res[0].stock) {
               console.log(res[0]);
-              console.log("Your total is.." + res.price * answer.stock + "Have a swell day!");
-          }
+              console.log("Your total is.." + res[0].price * answer.quantity + " , Have a swell day!");
           }
            else {
-            for (var i = 0; i < res.length; i++) {
                   console.log(res[0]);
                   console.log("The ultimate INSUFFICIENCY of it all!");
-          };
         };
         });
       });
