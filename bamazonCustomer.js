@@ -55,7 +55,7 @@ connection.connect(function(err)  {
             for (var i = 0; i < res.length; i++) {
               console.log(res[0]);
               console.log("Your total is.." + res.price * answer.stock + "Have a swell day!");
-          };
+          }
           }
            else {
             for (var i = 0; i < res.length; i++) {
