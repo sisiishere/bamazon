@@ -18,9 +18,8 @@ connection.connect(function(err)  {
     console.log("connected as id " + connection.threadId);
     runSearch();
 });
-  
-  
-  
+
+//function runSearch();//
   function runSearch() {
     inquirer
       .prompt({
@@ -29,18 +28,20 @@ connection.connect(function(err)  {
         message: "What product are you searching for?"
       })
       .then(function(answer) {
-        var query = "SELECT id, product, department FROM bamazon1 WHERE ?";
-        connection.query(query, { prod: answer.prod }, function(err, res) {
-          if (err) throw err;
+        var query = "SELECT item_id, product, department, stock, price FROM products GROUP BY item_id = ' ' ";
+       //var query = "SELECT * FROM products" 
+       connection.query(query, {product: answer.item_id}, function(err, res){
+          if (err) throw err; 
           for (var i = 0; i < res.length; i++) {
-            console.log("id: " + res[i].item_id + " || Product: " + res[i].prod + " || Department: " + res[i].dep);
+            console.log(res[0]);
+            console.log("item_id: " + res[i].item_id + " || Product: " + res[i].product + " || Department: " + res[i].department + " || Stock: " + res[i].stock + " || Price: " + res[i].price);
+           qtySearch();
           }
-          runSearch();
-        });
-      });
+          });
+      })
   }
   
-  function runSearch() {
+  function qtySearch() {
     inquirer
       .prompt({
         name: "quantity",
@@ -48,21 +49,24 @@ connection.connect(function(err)  {
         message: "How many quantities would you like to buy per item?"
       })
       .then(function(answer) {
-        var query = "SELECT stock, price FROM bamazon1 WHERE ?";
-        connection.query(query, function(err, res) {
-          if (answer <= stock) {
-          for (var i = 0; i < res.length; i++) {
-            console.log("Your order has been placed! Have a swell day!");
-          }}
-          else {
-              for (var i = 0; i < res.length; i++) {  
-                  console.log("The ultimate INSUFFICIENCY of it all!")
-              }
+        var query = "SELECT stock, price FROM products WHERE stock";
+        connection.query(query, {stock: answer.stock}, function(err, res) {
+          if (answer.stock < res.stock) {
+            for (var i = 0; i < res.length; i++) {
+              console.log(res[0]);
+              console.log("Your total is.." + res.price * answer.stock + "Have a swell day!");
+          };
           }
-          runSearch();
+           else {
+            for (var i = 0; i < res.length; i++) {
+                  console.log(res[0]);
+                  console.log("The ultimate INSUFFICIENCY of it all!");
+          };
+        };
         });
       });
   }
   
+
   
   
