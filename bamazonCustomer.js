@@ -41,7 +41,7 @@ connection.connect(function(err)  {
       })
   }
   
-  function qtySearch() {
+  function qtySearch() { 
     inquirer
       .prompt({
         name: "quantity",
