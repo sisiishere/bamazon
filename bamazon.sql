@@ -47,7 +47,7 @@ values ('Dayloveme Bolster', 'Health and Wellness', 13, 69);
 
 insert into products
 (product, department, price, stock) 
-values ('Essential Hot Tub', 'Patios and Tubs', 3500, 100);
+values ('Essential Hot Tub', 'Patios and Tubs', 3500, 100); 
 
 insert into products
 (product, department, price, stock) 
